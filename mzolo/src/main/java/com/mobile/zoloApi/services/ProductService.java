@@ -3,6 +3,8 @@
  */
 package com.mobile.zoloApi.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +22,9 @@ public class ProductService {
 	
 	public Iterable<ProductEntity> getAllProd(){
 		return productRepository.findAll();
+	}
+	
+	public List<Object[]> findByAssetType(String asset_type){
+		return productRepository.findByAssetType(asset_type);
 	}
 }

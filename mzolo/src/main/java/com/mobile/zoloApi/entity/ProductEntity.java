@@ -3,11 +3,21 @@
  */
 package com.mobile.zoloApi.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @author Aman
@@ -15,7 +25,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "product_master")
-public class ProductEntity {
+public class ProductEntity implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int prod_id;
@@ -25,6 +39,56 @@ public class ProductEntity {
 	private String asset_type;
 	private String manufacturer;
 	private String model;
+
+	// Implementing many to one mapping below.
+	// column vendor is getting mapped here. Check VendorEntity for one to many
+	// mapping.
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "vendor_id", nullable = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private VendorEntity vendor;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "group_id", nullable = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private GroupEntity group;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "subgroup_id", nullable = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private SubgroupEntity subgroup;
+	
+	
+	@JsonIgnore
+	public SubgroupEntity getSubgroup() {
+		return subgroup;
+	}
+	@JsonIgnore
+	public void setSubgroup(SubgroupEntity subgroup) {
+		this.subgroup = subgroup;
+	}
+	@JsonIgnore
+	public GroupEntity getGroup() {
+		return group;
+	}
+	@JsonIgnore
+	public void setGroup(GroupEntity group) {
+		this.group = group;
+	}
+
+	@JsonIgnore
+	public VendorEntity getVendor() {
+		return vendor;
+	}
+
+	@JsonIgnore
+	public void setVendor(VendorEntity vendor) {
+		this.vendor = vendor;
+	}
+
+	public ProductEntity() {
+
+	}
 
 	public int getProd_id() {
 		return prod_id;
@@ -81,5 +145,21 @@ public class ProductEntity {
 	public void setModel(String model) {
 		this.model = model;
 	}
+
+
+    //Getter Method's
+	//to get vendor's full name
+    public String getVendor_name(){
+        return vendor.getVendor_name();
+    }
+    //to get group's name
+    public String getGroup_name(){
+        return group.getGroup_name();
+    }
+  //to get group's name
+    public String getSubgroup_name(){
+        return subgroup.getSubgroup_name();
+    }
+ 
 
 }
