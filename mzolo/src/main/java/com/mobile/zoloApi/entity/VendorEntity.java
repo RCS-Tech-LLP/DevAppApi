@@ -3,10 +3,16 @@
  */
 package com.mobile.zoloApi.entity;
 
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -15,7 +21,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "vendor_master")
-public class VendorEntity {
+public class VendorEntity implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int vendor_id;
@@ -109,4 +119,12 @@ public class VendorEntity {
 		this.vendor_phone = vendor_phone;
 	}
 
+	// Implementing one to many mapping below.
+	// Check ProductEntity class to check implementation on many to one mapping
+	@OneToMany(mappedBy = "vendor", fetch = FetchType.LAZY)
+	private Set<ProductEntity> productEntity = new HashSet<>();
+
+	public VendorEntity() {
+
+	}
 }
