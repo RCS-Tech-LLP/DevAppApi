@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.mobile.zoloApi.entity.HardwareRegisterEntity;
 import com.mobile.zoloApi.repository.HardwareRegisterRepository;
 
+
 /**
  * @author Aman
  *

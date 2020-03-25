@@ -118,6 +118,7 @@ public class HardwareRegisterEntity implements Serializable {
 		return assetname;
 	}
 
+	
 	public void setAssetname(String assetname) {
 		this.assetname = assetname;
 	}

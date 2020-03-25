@@ -11,6 +11,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.mobile.zoloApi.entity.HardwareRegisterEntity;
 
+
 /**
  * @author Aman
  *
