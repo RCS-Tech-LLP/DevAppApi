@@ -13,7 +13,7 @@ import com.mobile.zoloApi.repository.HardwareRegisterRepository;
 
 
 /**
- * @author Aman
+ * @author Jenish
  *
  */
 @Service

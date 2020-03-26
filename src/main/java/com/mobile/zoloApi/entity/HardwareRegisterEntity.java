@@ -1,4 +1,3 @@
-
 /**
  * 
  */
@@ -17,7 +16,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -83,20 +81,21 @@ public class HardwareRegisterEntity implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "subgroup_id", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	private SubgroupEntity subgroup;
+	private SubgroupEntity subgroupHardware;
+	
+	@JsonIgnore
+	public SubgroupEntity getSubgroupHardware() {
+		return subgroupHardware;
+	}
+	@JsonIgnore
+	public void setSubgroupHardware(SubgroupEntity subgroupHardware) {
+		this.subgroupHardware = subgroupHardware;
+	}
 	
 	public HardwareRegisterEntity() {
 
 	}
 	
-	@JsonIgnore
-	public SubgroupEntity getSubgroup() {
-		return subgroup;
-	}
-	@JsonIgnore
-	public void setSubgroup(SubgroupEntity subgroup) {
-		this.subgroup = subgroup;
-	}
 	
 	public int getAst_id() {
 		return ast_id;
@@ -468,6 +467,6 @@ public class HardwareRegisterEntity implements Serializable {
 	
 	//to get group's name
     public String getSubgroup_name(){
-        return subgroup.getSubgroup_name();
+        return subgroupHardware.getSubgroup_name();
     }
 }

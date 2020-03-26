@@ -13,7 +13,7 @@ import com.mobile.zoloApi.entity.HardwareRegisterEntity;
 
 
 /**
- * @author Aman
+ * @author Jenish
  *
  */
 public interface HardwareRegisterRepository extends CrudRepository<HardwareRegisterEntity, Integer>{

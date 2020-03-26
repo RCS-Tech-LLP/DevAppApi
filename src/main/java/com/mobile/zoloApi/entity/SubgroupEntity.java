@@ -51,7 +51,7 @@ public class SubgroupEntity implements Serializable{
 	
 	// Implementing one to many mapping below.
 	// Check HardwareRegisterEntity class to check implementation on many to one mapping
-	@OneToMany(mappedBy = "subgroup", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "subgroupHardware", fetch = FetchType.LAZY)
 	private Set<HardwareRegisterEntity> HardwareRegisterEntity = new HashSet<>();
 	
 	public SubgroupEntity() {}
