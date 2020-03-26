@@ -17,7 +17,6 @@ import com.mobile.zoloApi.services.CompanyService;
  * @author Jenish
  *
  */
-
 @RestController
 @RequestMapping(value="/configuration")
 public class CompanyController {
