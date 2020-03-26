@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mobile.zoloApi.entity.CompanyEntity;
 import com.mobile.zoloApi.services.CompanyService;
 
-
 /**
  * @author Jenish
  *
